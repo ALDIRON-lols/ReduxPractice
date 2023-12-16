@@ -4,14 +4,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const RemoveUser = () => {
-  const userData = useSelector((data) => data.users);
-  const listColor = useSelector((data)=>data.color) ? "blue" : "red";
+  const userData = useSelector((data) => data.usersData.users);
+  const listColor = useSelector((data)=>data.usersData.color) ? "blue" : "red";
   const dispatch = useDispatch();
-  console.log(userData);
   return (
-    <div>
+    <div style={{color: "black"}}>
       RemoveUserpage
-      <div>
+      <div >
         {userData.map((item) => (
           <div
             className="text-xl"
@@ -33,6 +32,7 @@ const RemoveUser = () => {
                   left: "90%",
                   borderRadius: "25px",
                   padding: "2px",
+                  color: "black"
                 }}
                 onClick={()=>dispatch(removeUser(item.id))}
               >

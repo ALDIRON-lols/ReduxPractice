@@ -4,12 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../redux/slice";
 
 const DisplayUser = () => {
-  const userData = useSelector((data) => data.users);
-  const listColor = useSelector((data)=>data.color) ? "blue" : "red";
+  const userData = useSelector((data) => data.usersData.users);
+  const listColor = useSelector((data) => data.usersData.color) ? "blue" : "red";
   const dispatch = useDispatch();
-  console.log(listColor);
-
-  console.log(userData);
   return (
     <div
       className="text-2xl"
@@ -19,11 +16,13 @@ const DisplayUser = () => {
         display: "flex",
         minHeight: "300px",
         border: "1px solid blue",
+        color: "black",
       }}
     >
       DisplayUser
       {userData.map((item) => (
         <div
+          key={item.id}
           className="text-xl"
           style={{
             backgroundColor: `${listColor}`,
@@ -31,17 +30,21 @@ const DisplayUser = () => {
             marginBottom: "5px",
             borderRadius: "25px",
             padding: "6px",
+            color: "white",
           }}
         >
           {item.name}
           <span>
             <button
-              style={{ backgroundColor: "white",
+              style={{
+                backgroundColor: "white",
                 color: "black",
                 position: "sticky",
                 left: "90%",
                 borderRadius: "25px",
-                padding: "2px" }}
+                color: "black",
+                padding: "2px",
+              }}
               onClick={() => dispatch(removeUser(item.id))}
             >
               Remove

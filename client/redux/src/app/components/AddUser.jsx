@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, changeColor } from "../redux/slice";
@@ -6,14 +6,12 @@ import Link from "next/link";
 
 const AddUser = () => {
   const [name, setName] = useState("");
-  const isBlueColor = useSelector((data)=>data.color);
+  const isBlueColor = useSelector((data) => data.usersData.color);
   const dispatcher = useDispatch();
   const userDispatch = () => {
-    console.log(name);
     dispatcher(addUser(name));
-  }
+  };
 
-   
   return (
     <div
       style={{
@@ -38,6 +36,7 @@ const AddUser = () => {
           borderRadius: "25px",
           width: "250px",
           padding: "7px",
+          color: "black",
         }}
       />
       <button
@@ -46,6 +45,7 @@ const AddUser = () => {
           borderRadius: "25px",
           width: "200px",
           padding: "3px",
+          color: "black",
         }}
         onClick={userDispatch}
       >
@@ -57,12 +57,21 @@ const AddUser = () => {
           borderRadius: "25px",
           width: "200px",
           padding: "3px",
+          color: "black",
         }}
-        onClick={()=>dispatcher(changeColor(isBlueColor))}
+        onClick={() => dispatcher(changeColor(isBlueColor))}
       >
         Change list color
       </button>
-      <Link href="/pages/removeuser" >Remove User Page</Link>
+      <Link style={{ color: "black" }} href="/pages/removeuser">
+        Remove User Page
+      </Link>
+      <Link style={{ color: "black" }} href="/pages/todoList">
+        Todo List Page
+      </Link>
+      <Link style={{ color: "black" }} href="/pages/apiusers">
+        Api Users Page
+      </Link>
     </div>
   );
 };
